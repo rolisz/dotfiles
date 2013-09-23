@@ -41,7 +41,6 @@ augroup END
 set laststatus=2
 map <F2> :NERDTreeToggle<CR>
 
-let g:syntastic_python_checkers=['pyflakes', 'pylint', 'python']
 
 set backspace=indent,eol,start
 
@@ -68,13 +67,23 @@ call togglebg#map("<F5>")
 :set incsearch
 :set ignorecase
 :set smartcase
-":set hlsearch
+:set hlsearch
+nnoremap <leader><space> :noh<cr>
 set scrolloff=2
 set sidescrolloff=5
 set history=1000
 set shiftround
 set colorcolumn=80
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 noremap <C-/> :s/^\([\t\ ]*[^\ \t#]\+\)\&/#\ /<CR>
 nmap <F8> :TagbarToggle<CR>
 
+" YCM setup
+let g:ycm_seed_identifiers_with_syntax=1
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Syntastic
+let g:syntastic_python_checkers=['pep8', 'pyflakes', 'pylint', 'python']
