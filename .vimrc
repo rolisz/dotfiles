@@ -64,10 +64,10 @@ autocmd FileType python autocmd BufWritePre <buffer> :call TrimWhiteSpace()
 
 call togglebg#map("<F5>")
 
-:set incsearch
-:set ignorecase
-:set smartcase
-:set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
 nnoremap <leader><space> :noh<cr>
 set scrolloff=2
 set sidescrolloff=5
