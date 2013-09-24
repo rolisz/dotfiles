@@ -40,7 +40,7 @@ augroup END
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 set laststatus=2
 map <F2> :NERDTreeToggle<CR>
-
+let NERDTreeIgnore = ['\.pyc$']
 
 set backspace=indent,eol,start
 
@@ -79,7 +79,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-noremap <C-/> :s/^\([\t\ ]*[^\ \t#]\+\)\&/#\ /<CR>
+noremap <leader># :s/^\([\t\ ]*[^\ \t#]\+\)\&/#\ /<CR>
 nmap <F8> :TagbarToggle<CR>
 
 " YCM setup
