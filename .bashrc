@@ -8,3 +8,5 @@ ResetColor="\[\033[0m\]"            # Text reset
 GIT_PROMPT_END=" ${ResetColor} $ "
 
 source ~/dotfiles/bash-git-prompt/gitprompt.sh
+source ~/.django_bash_completion.sh
+

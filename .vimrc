@@ -87,3 +87,11 @@ let g:ycm_seed_identifiers_with_syntax=1
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Syntastic
 let g:syntastic_python_checkers=['pep8', 'pyflakes', 'pylint', 'python']
+
+" Splitting
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+set splitbelow
+set splitright
