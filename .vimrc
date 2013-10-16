@@ -15,6 +15,12 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'Raimondi/delimitMate'
 Bundle 'Tagbar'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
+Bundle 'JarrodCTaylor/vim-python-test-runner'
+Bundle 'wting/gitsessions.vim'
 
 filetype indent plugin on
 
@@ -67,6 +73,7 @@ call togglebg#map("<F5>")
 set incsearch
 set ignorecase
 set smartcase
+set gdefault
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 set scrolloff=2
@@ -76,8 +83,10 @@ set shiftround
 set colorcolumn=80
 set smartindent
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
+set mouse=a
 
 noremap <leader># :s/^\([\t\ ]*[^\ \t#]\+\)\&/#\ /<CR>
 nmap <F8> :TagbarToggle<CR>
@@ -95,3 +104,24 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 set splitbelow
 set splitright
+
+
+inoremap jj <ESC>
+
+set virtualedit=block
+
+set nobackup
+set nowb
+set noswapfile
+
+" toggle between number and relative number on ,l
+nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+  if !&relativenumber
+    set relativenumber
+  else
+    set nornu 
+  endif
+endfunction
+
+
