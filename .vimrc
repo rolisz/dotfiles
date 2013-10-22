@@ -28,6 +28,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
 Bundle 'benmills/vimux'
+Bundle 'takac/vim-hardtime'
+Bundle 'justinmk/vim-sneak'
 
 filetype indent plugin on
 
