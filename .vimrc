@@ -21,7 +21,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
 Bundle 'JarrodCTaylor/vim-python-test-runner'
 Bundle 'wting/gitsessions.vim'
-Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'kien/ctrlp.vim'
@@ -30,6 +30,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'benmills/vimux'
 Bundle 'takac/vim-hardtime'
 Bundle 'justinmk/vim-sneak'
+Bundle 'christoomey/vim-tmux-navigator'
 
 filetype indent plugin on
 
@@ -135,13 +136,7 @@ endfunction
 
 noremap / /\v
 
-noremap L $
-noremap H ^
-noremap K <C-U>
-noremap J <C-D>
-
 nnoremap <leader>R :RainbowParenthesesToggle<cr>
-
 
 set wildmenu
 
