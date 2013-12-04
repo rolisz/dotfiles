@@ -96,7 +96,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set mouse=a
+" set mouse=a
 
 noremap <leader># :s/^\([\t\ ]*[^\ \t#]\+\)\&/#\ /<CR>
 nmap <F8> :TagbarToggle<CR>
