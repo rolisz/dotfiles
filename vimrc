@@ -130,7 +130,7 @@ function! ToggleRelativeAbsoluteNumber()
   if !&relativenumber
     set relativenumber
   else
-    set nornu 
+    set nu 
   endif
 endfunction
 

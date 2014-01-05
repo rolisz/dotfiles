@@ -16,4 +16,4 @@ setopt APPEND_HISTORY
 export KEYTIMEOUT=1
 export TERM=xterm-256color
 
-source "~/dotfiles/tmuxinator.zsh" 
+source "~/.tmuxinator.sh"
