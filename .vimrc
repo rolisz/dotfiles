@@ -140,3 +140,4 @@ nnoremap <leader>R :RainbowParenthesesToggle<cr>
 
 set wildmenu
 
+autocmd BufRead, BufNewFile *.md, *.rst setlocal spell
