@@ -8,7 +8,8 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-vinegar'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'tpope/vim-fugitive'
 Bundle 'altercation/vim-colors-solarized'
@@ -31,6 +32,7 @@ Bundle 'benmills/vimux'
 Bundle 'takac/vim-hardtime'
 Bundle 'justinmk/vim-sneak'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'itchyny/calendar.vim'
 
 filetype indent plugin on
 
@@ -141,3 +143,5 @@ nnoremap <leader>R :RainbowParenthesesToggle<cr>
 set wildmenu
 
 autocmd BufRead, BufNewFile *.md, *.rst setlocal spell
+
+let g:calendar_google_calendar = 1
