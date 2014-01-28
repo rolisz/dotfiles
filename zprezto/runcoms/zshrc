@@ -16,4 +16,6 @@ setopt APPEND_HISTORY
 export KEYTIMEOUT=1
 export TERM=xterm-256color
 
+
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 source "~/.tmuxinator.sh"
