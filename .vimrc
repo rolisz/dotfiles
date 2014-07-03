@@ -7,6 +7,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/MatchTagAlways'
 Bundle 'scrooloose/syntastic'
 " Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-vinegar'
@@ -24,7 +25,7 @@ Bundle 'JarrodCTaylor/vim-python-test-runner'
 Bundle 'wting/gitsessions.vim'
 " Bundle 'vim-scripts/YankRing.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-" Bundle 'tmhedberg/SimpylFold'
+Bundle 'tmhedberg/SimpylFold'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'SirVer/ultisnips'
@@ -33,6 +34,13 @@ Bundle 'takac/vim-hardtime'
 Bundle 'justinmk/vim-sneak'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'itchyny/calendar.vim'
+Bundle 'henrik/vim-indexed-search'
+Bundle 'justincampbell/vim-eighties'
+Bundle 'othree/html5.vim'
+Bundle 'honza/vim-snippets'
+Bundle 'gcmt/wildfire.vim'
+Bundle 'Rykka/riv.vim'
+Bundle 'Chiel92/vim-autoformat'
 
 filetype indent plugin on
 
@@ -145,3 +153,40 @@ set wildmenu
 autocmd BufRead, BufNewFile *.md, *.rst setlocal spell
 
 let g:calendar_google_calendar = 1
+
+let g:netrw_list_hide= '.*\.pyc$'
+
+nnoremap<C-n> :NosetestFile<CR>
+nnoremap<C-l> :NosetestMethod<CR>
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:eighties_enabled = 1
+let g:eighties_minimum_width = 80
+
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips_JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsListSnippets="<TAB>"
+
+
+let g:wildfire_objects = {
+   \ '*' : ["i'", 'i"', 'i)', 'i]', 'i}', 'ip'],
+   \ 'html,xml' : ["at"],
+\ }
+
+noremap <F3> :Autoformat<CR><CR>
