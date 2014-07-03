@@ -57,6 +57,7 @@ else
         exit
     fi
 fi
+}
 
 function install_prezto {
 
@@ -67,4 +68,4 @@ function install_prezto {
         done
 }
 
-install_prezto
+install_prezto()
