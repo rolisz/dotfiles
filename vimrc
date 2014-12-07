@@ -1,41 +1,55 @@
+if &shell =~# 'fish$'
+    set shell=zsh
+endif
+set nocompatible
 " Vundle bundles 
 filetype off
 
-set nocompatible
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
 
-Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-" Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-vinegar'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'tpope/vim-fugitive'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'Raimondi/delimitMate'
-Bundle 'Tagbar'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
-Bundle 'JarrodCTaylor/vim-python-test-runner'
-Bundle 'wting/gitsessions.vim'
-" Bundle 'vim-scripts/YankRing.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-" Bundle 'tmhedberg/SimpylFold'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'SirVer/ultisnips'
-Bundle 'benmills/vimux'
-Bundle 'takac/vim-hardtime'
-Bundle 'justinmk/vim-sneak'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'itchyny/calendar.vim'
+call vundle#begin()
 
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-vinegar'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
+" Plugin 'Raimondi/delimitMate'
+Plugin 'Tagbar'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'JarrodCTaylor/vim-python-test-runner'
+Plugin 'wting/gitsessions.vim'
+" Plugin 'vim-scripts/YankRing.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'tmhedberg/SimpylFold'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'benmills/vimux'
+Plugin 'takac/vim-hardtime'
+Plugin 'justinmk/vim-sneak'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'itchyny/calendar.vim'
+Plugin 'dag/vim-fish'
+Plugin 'Rykka/clickable.vim'
+Plugin 'terryma/vim-expand-region'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'caigithub/a_indent'
+" Plugin 'vim-scripts/Session-Viminfo-Management'
+Plugin 'godlygeek/tabular'
+
+call vundle#end()  
 filetype indent plugin on
 
+autocmd filetype python nnoremap<C-n> :NosetestFile<CR>
 " Misc settings 
 
 set nrformats-=octal
@@ -54,11 +68,18 @@ augroup vimrc_autocmds
     autocmd FileType python set nowrap
 augroup END
 
+
+let g:UltiSnipsExpandTrigger="<c-q>"
+
+" this mapping Enter key to <C-y> to chose the current highlight item 
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+
 " Powerline setup
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 set laststatus=2
-map <F2> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
 
 set backspace=indent,eol,start
 
@@ -80,13 +101,12 @@ function! TrimWhiteSpace()
 endfunction
 autocmd FileType python autocmd BufWritePre <buffer> :call TrimWhiteSpace()
 
-call togglebg#map("<F5>")
-
 set incsearch
 set ignorecase
 set smartcase
 set gdefault
 set hlsearch
+set hidden
 nnoremap <leader><space> :noh<cr>
 set scrolloff=2
 set sidescrolloff=5
@@ -110,13 +130,12 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:syntastic_python_checkers=['pep8', 'pyflakes', 'pylint', 'python']
 
 " Splitting
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 set splitbelow
 set splitright
-
 
 inoremap jj <ESC>
 
@@ -133,15 +152,69 @@ function! ToggleRelativeAbsoluteNumber()
     set relativenumber
   else
     set nu 
+    set norelativenumber
   endif
 endfunction
 
 noremap / /\v
 
 nnoremap <leader>R :RainbowParenthesesToggle<cr>
+set pastetoggle=<F2>
+
+vmap Q gq
+nmap Q gqap
 
 set wildmenu
+set wildmode=longest:full,full
 
 autocmd BufRead, BufNewFile *.md, *.rst setlocal spell
 
 let g:calendar_google_calendar = 1
+
+set wildignore=*.o,*~,*.pyc
+
+autocmd FileType fish compiler fish
+autocmd FileType fish setlocal foldmethod=expr
+
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim " .  expand("%") . "'")
+
+noremap <C-u> :call system("cmus-remote -u")<CR>
+noremap <C-g> :call system("cmus-remote -k +2")<CR>
+noremap <C-f> :call system("cmus-remote -k -2")<CR>
+inoremap <C-u> <C-O>:call system("cmus-remote -u")<CR>
+inoremap <C-g> <C-O>:call system("cmus-remote -k +2")<CR>
+inoremap <C-f> <C-O>:call system("cmus-remote -k -2")<CR>
+vmap v <Plug>(expand_region_expand)
+vmap <S-v> <Plug>(expand_region_shrink)
+
+noremap <silent> <Leader>w :call ToggleWrap()<CR>
+function! ToggleWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    set virtualedit=all
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  else
+    echo "Wrap ON"
+    setlocal wrap linebreak nolist
+    set virtualedit=
+    setlocal display+=lastline
+    noremap  <buffer> <silent> k   gk
+    noremap  <buffer> <silent> j   gj
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+  endif
+endfunction
