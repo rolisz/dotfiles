@@ -45,6 +45,8 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'caigithub/a_indent'
 " Plugin 'vim-scripts/Session-Viminfo-Management'
 Plugin 'godlygeek/tabular'
+Plugin 'henrik/vim-indexed-search'
+Plugin 'gcmt/wildfire.vim'
 
 call vundle#end()  
 filetype indent plugin on
@@ -218,3 +220,39 @@ function! ToggleWrap()
     inoremap <buffer> <silent> <End>  <C-o>g<End>
   endif
 endfunction
+let g:netrw_list_hide= '.*\.pyc$'
+
+nnoremap<C-n> :NosetestFile<CR>
+nnoremap<C-l> :NosetestMethod<CR>
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+let g:eighties_enabled = 1
+let g:eighties_minimum_width = 80
+
+function! g:UltiSnips_Complete()
+    call UltiSnips_ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips_JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<TAB>"
+let g:UltiSnipsListSnippets="<TAB>"
+
+
+let g:wildfire_objects = {
+   \ '*' : ["i'", 'i"', 'i)', 'i]', 'i}', 'ip'],
+   \ 'html,xml' : ["at"],
+\ }
+
+noremap <F3> :Autoformat<CR><CR>

@@ -16,8 +16,4 @@ setopt APPEND_HISTORY
 export KEYTIMEOUT=1
 export TERM=xterm-256color
 
-
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
-export LD_LIBRARY_PATH=/home/rolisz/Downloads/overfeat/src
-export PYLEARN2_DATA_PATH=/run/media/rolisz/Data/Presentations/files
-source "~/.tmuxinator.sh"
+source "~/dotfiles/tmuxinator.zsh" 
