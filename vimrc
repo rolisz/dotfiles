@@ -47,6 +47,7 @@ Plugin 'caigithub/a_indent'
 Plugin 'godlygeek/tabular'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'gcmt/wildfire.vim'
+Plugin 'Chiel92/vim-autoformat'
 
 call vundle#end()  
 filetype indent plugin on

@@ -31,6 +31,10 @@ for file in ${=files}; do
     ln -s $dir/$file ~/.$file
 done
 
+echo "Copying fish config file"
+mkdir -p ~/.config/fish/
+ln -s $dir/config.fish ~/.config/fish/config.fish
+
 sudo pip install tmuxp
 
 function install_zsh {
