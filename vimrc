@@ -232,12 +232,12 @@ let g:eighties_enabled = 1
 let g:eighties_minimum_width = 80
 
 function! g:UltiSnips_Complete()
-    call UltiSnips_ExpandSnippet()
+    call UltiSnips#ExpandSnippet()
     if g:ulti_expand_res == 0
         if pumvisible()
             return "\<C-n>"
         else
-            call UltiSnips_JumpForwards()
+            call UltiSnips#JumpForwards()
             if g:ulti_jump_forwards_res == 0
                return "\<TAB>"
             endif
@@ -257,3 +257,10 @@ let g:wildfire_objects = {
 \ }
 
 noremap <F3> :Autoformat<CR><CR>
+
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" Plugin 'eiginn/netrw'
+
+" <Ctrl-^> should go to the last file, not to netrw.
+let g:netrw_altfile = 1

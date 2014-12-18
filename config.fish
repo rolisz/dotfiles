@@ -18,3 +18,6 @@ set fish_plugins git python percol tmux
 
 set TERM xterm-256color
 eval (dircolors -c ~/.dircolors/dircolors.256dark  | sed 's/>&\/dev\/null$//')  
+
+alias acr_serve "acrylamid autocompile"
+alias acr_push "acrylamid deploy rsync"
