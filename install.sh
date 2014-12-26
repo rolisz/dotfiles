@@ -1,5 +1,5 @@
 # install some useful programs
-sudo apt-get install zsh fish tmux cmus git
+sudo apt-get install zsh fish tmux cmus git build-essential cmake python-dev curl
 
 # create necessary symlinks
 ./makesymlinks.sh
@@ -21,7 +21,19 @@ mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-# ls colors
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer
+cd ~
+
+
+# colors
 git clone https://github.com/seebi/dircolors-solarized
 mkdir ~/.dircolors
 cp ~/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
+
+git clone https://github.com/Anthony25/gnome-terminal-colors-solarized
+~/gnome-terminal-colors-solarized/install.sh
+
+# install oh-my-fish
+curl -L https://github.com/bpinto/oh-my-fish/raw/master/tools/install.fish | fish
+
