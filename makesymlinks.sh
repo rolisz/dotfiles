@@ -35,6 +35,10 @@ echo "Copying fish config file"
 mkdir -p ~/.config/fish/
 ln -s $dir/config.fish ~/.config/fish/config.fish
 
+echo "Copying i3 config file"
+mkdir -p ~/.i3/
+ln -s $dir/i3_config ~/.i3/config
+
 sudo pip install tmuxp
 
 function install_zsh {
