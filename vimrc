@@ -9,7 +9,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 " Plugin 'scrooloose/nerdtree'
@@ -25,19 +25,19 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'JarrodCTaylor/vim-python-test-runner'
-Plugin 'wting/gitsessions.vim'
+" Plugin 'wting/gitsessions.vim'
 " Plugin 'vim-scripts/YankRing.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 " Plugin 'tmhedberg/SimpylFold'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'benmills/vimux'
 Plugin 'takac/vim-hardtime'
 Plugin 'justinmk/vim-sneak'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'itchyny/calendar.vim'
+" Plugin 'itchyny/calendar.vim'
 Plugin 'dag/vim-fish'
 Plugin 'Rykka/clickable.vim'
 Plugin 'terryma/vim-expand-region'
@@ -45,14 +45,18 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'caigithub/a_indent'
 " Plugin 'vim-scripts/Session-Viminfo-Management'
 Plugin 'godlygeek/tabular'
-Plugin 'henrik/vim-indexed-search'
+" Plugin 'henrik/vim-indexed-search'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'EinfachToll/DidYouMean'
+"Bundle 'farseer90718/vim-taskwarrior'
 
 call vundle#end()  
 filetype indent plugin on
 
 autocmd filetype python nnoremap<C-n> :NosetestFile<CR>
+autocmd filetype *.txt set tw=80
+autocmd filetype markdown set tw=80
 " Misc settings 
 
 set nrformats-=octal
@@ -72,7 +76,7 @@ augroup vimrc_autocmds
 augroup END
 
 
-let g:UltiSnipsExpandTrigger="<c-q>"
+" let g:UltiSnipsExpandTrigger="<c-q>"
 
 " this mapping Enter key to <C-y> to chose the current highlight item 
 " and close the selection list, same as other IDEs.
@@ -102,7 +106,7 @@ function! TrimWhiteSpace()
     %s/\s\+$//e
     call cursor(l, c)
 endfunction
-autocmd FileType python autocmd BufWritePre <buffer> :call TrimWhiteSpace()
+autocmd FileType python,javascript autocmd BufWritePre <buffer> :call TrimWhiteSpace()
 
 set incsearch
 set ignorecase
@@ -231,24 +235,24 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:eighties_enabled = 1
 let g:eighties_minimum_width = 80
 
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+" function! g:UltiSnips_Complete()
+"     call UltiSnips#ExpandSnippet()
+"     if g:ulti_expand_res == 0
+"         if pumvisible()
+"             return "\<C-n>"
+"         else
+"             call UltiSnips#JumpForwards()
+"             if g:ulti_jump_forwards_res == 0
+"                return "\<TAB>"
+"             endif
+"         endif
+"     endif
+"     return ""
+" endfunction
 
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsListSnippets="<TAB>"
+" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<TAB>"
+" let g:UltiSnipsListSnippets="<TAB>"
 
 
 let g:wildfire_objects = {
@@ -259,8 +263,11 @@ let g:wildfire_objects = {
 noremap <F3> :Autoformat<CR><CR>
 
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.md set tw=80
 
 " Plugin 'eiginn/netrw'
 
 " <Ctrl-^> should go to the last file, not to netrw.
 let g:netrw_altfile = 1
+
+nnoremap ! :! 

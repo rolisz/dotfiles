@@ -11,6 +11,7 @@
     pager = true
 [core]
 	editor = vim
+	autocrlf = input
 [alias]
     st = status
     ci = commit

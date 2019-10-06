@@ -14,7 +14,7 @@ do
 done
 
 # install some useful programs
-program_list="zsh fish tmux cmus git cmake curl"
+program_list="zsh fish tmux cmus git cmake curl imagemagick rsync"
 ubuntu_extras="build-essential python-dev"
 case $pm in
 "yum")
@@ -29,7 +29,7 @@ case $pm in
 	;;
 "pacman")
 	sudo pacman -S $program_list
-    sudo pacman -S python2 python2-virtualenv python2-pip python-pip python-virtualenv
+    sudo pacman -S python-pip
 	;;
 esac
 
@@ -56,7 +56,7 @@ vim +PluginInstall +qall
 
 pwd
 cd ~/.vim/bundle/YouCompleteMe
-./install.sh --clang-completer
+./install.sh --clang-completer --go-completer --rust-completer
 cd ~
 
 
